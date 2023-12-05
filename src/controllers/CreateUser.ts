@@ -8,7 +8,11 @@ export class CreateUser {
     async user(req: Request, res: Response) {
         const {
             name,
-            email, password
+            email, 
+            password,
+            telefone,
+            apelido,
+            cep
         } = req.body
 
         try {
@@ -16,26 +20,19 @@ export class CreateUser {
                 data: {
                     name: name,
                     email: email,
-                    password:password
+                    password:password,
+                    telefone:telefone,
+                    apelido:apelido,
+                    cep:cep
                 }
             })
             return res.status(201).json('Created')
         } catch (Error) {
-            console.log(Error)
-            return res.status(400).json(Error)
+           console.log(Error)
+            return res.status(400).json("Usuario ja existente com esse email")
         }
 
 
     }
 
 }
-
-
-/* main()
-  .catch(async (e) => {
-    console.error(e)
-    process.exit(1)
-  })
-  .finally(async () => {
-    await prisma.$disconnect()
-  }) */

@@ -8,6 +8,7 @@ export class CreateTask {
         const {
             title,
             description,
+            categories,
             userId  // Assuming you have userId in the request body
         } = req.body;
 
@@ -27,7 +28,8 @@ export class CreateTask {
             const result = await prisma.task.create({
                 data: {
                     title: title,
-                    description: description,
+                    description:description,
+                    categories: categories,
                     author: {
                         connect: {
                             id: userId

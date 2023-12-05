@@ -4,26 +4,23 @@ import { Request, Response } from "express";
 const prisma = new PrismaClient()
 
 
-export class GetOneUser {
-    async user(req: Request, res: Response) {
+export class GetUserID {
+    async user1(req: Request, res: Response) {
         const {
-            password,
-            email, 
             id
-        } = req.body
+        } = req.params
 
         try {
             const result = await prisma.user.findUnique({
                 where: {
-                  password:password,
-                  email: email,
+                 id:id
                 },
                 include: {
                   tasks: true, // Assuming you have a relation named 'tasks' in your User model
                 },
               });
 
-            if(result && result.password === password){
+            if(result){
                  return res.status(201).json(result)
             }else{
                 return res.status(505).json("usuario nao encontrado")
