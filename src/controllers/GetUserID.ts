@@ -5,29 +5,30 @@ const prisma = new PrismaClient()
 
 
 export class GetUserID {
-    async user1(req: Request, res: Response) {
+    async userId(req: Request, res: Response) {
         const {
             id
         } = req.params
-
+        console.log(id)
         try {
+
             const result = await prisma.user.findUnique({
                 where: {
-                 id:id
+                    id: id
                 },
                 include: {
-                  tasks: true, // Assuming you have a relation named 'tasks' in your User model
+                    tasks: true, // Assuming you have a relation named 'tasks' in your User model
                 },
-              });
+            });
 
-            if(result){
-                 return res.status(201).json(result)
-            }else{
+            if (result) {
+                return res.status(201).json(result)
+            } else {
                 return res.status(505).json("usuario nao encontrado")
             }
-                
-    
-           
+
+
+
         } catch (Error) {
             console.log(Error)
             return res.status(400).json(Error)

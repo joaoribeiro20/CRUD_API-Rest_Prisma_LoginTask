@@ -9,14 +9,16 @@ export class CreateTask {
             title,
             description,
             categories,
-            userId  // Assuming you have userId in the request body
+            authorId  // Assuming you have userId in the request body
         } = req.body;
 
         try {
+
+            console.log(authorId)
             // Check if the user with the specified ID exists
             const user = await prisma.user.findUnique({
                 where: {
-                    id: userId
+                    id: authorId
                 }
             });
 
@@ -32,7 +34,7 @@ export class CreateTask {
                     categories: categories,
                     author: {
                         connect: {
-                            id: userId
+                            id: authorId
                         }
                     }
                 }
@@ -41,7 +43,7 @@ export class CreateTask {
             return res.status(201).json(result);
         } catch (error) {
             console.error(error);
-            return res.status(500).json({ error: 'Internal Server Error' });
+            return res.status(500).json({ error: 'Internal Server Error ixi' });
         }
     }
 }

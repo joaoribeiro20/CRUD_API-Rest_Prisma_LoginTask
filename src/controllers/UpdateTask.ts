@@ -7,17 +7,22 @@ const prisma = new PrismaClient()
 export class UpdateTask {
     async task(req: Request, res: Response) {
         const {
-            title,
-            description,
-            taskId  // Assuming you have userId in the request body
+            authorId,        
+            categories,        
+            description,       
+            id,          
+            statu,         
+            title        
         } = req.body;
 
         try {
             const result = await prisma.task.update({
-                where: { id: taskId },
+                where: { id: id },
                 data: {
-                    title:title,
-                    description:description
+                   title:title,
+                   description:description,
+                   categories:categories,
+                   statu:statu
                 },
               })
             if(result ){

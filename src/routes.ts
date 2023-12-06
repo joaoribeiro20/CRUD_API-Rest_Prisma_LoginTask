@@ -16,11 +16,11 @@ routes.get('/', (req, res) => {
 routes.post('/createUser', new CreateUser().user)
 routes.post('/login', new GetOneUser().user)
 
-routes.get('/getUser/:id', new GetUserID().user1)
+routes.get('/getUser/:id', new GetUserID().userId)
 
 routes.post('/createTask', new CreateTask().task)
 routes.patch('/updateTask', new UpdateTask().task)
-routes.delete('/deleteTask', new DeleteTask().task)
+routes.delete('/deleteTask/:taskId', new DeleteTask().task)
 
 
 export default routes

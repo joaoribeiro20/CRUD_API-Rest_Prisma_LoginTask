@@ -8,7 +8,7 @@ export class DeleteTask {
     async task(req: Request, res: Response) {
         const {
             taskId  
-        } = req.body;
+        } = req.params;
 
         try {
             const result = await prisma.task.delete({
