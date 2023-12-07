@@ -6,6 +6,7 @@ const prisma = new PrismaClient();
 export class CreateTask {
     async task(req: Request, res: Response) {
         const {
+            
             title,
             description,
             categories,
@@ -29,6 +30,7 @@ export class CreateTask {
             // Create a new task with the associated user
             const result = await prisma.task.create({
                 data: {
+                
                     title: title,
                     description:description,
                     categories: categories,
