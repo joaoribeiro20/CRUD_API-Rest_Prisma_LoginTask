@@ -1,8 +1,5 @@
-import { PrismaClient } from '@prisma/client'
-import { Request, Response } from "express";
-
-const prisma = new PrismaClient()
-
+import { Request, Response } from 'express';
+import prisma from '../../../database/Client';
 
 export class GetOneUser {
     async user(req: Request, res: Response) {

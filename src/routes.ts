@@ -1,11 +1,15 @@
 import { Router } from "express";
-import { CreateUser } from "./controllers/CreateUser";
-import { GetOneUser } from "./controllers/GetOneUser";
-import { CreateTask } from "./controllers/CreateTask";
-import { UpdateTask } from "./controllers/UpdateTask";
-import { DeleteTask } from "./controllers/DeleteTask";
-import { GetUserID } from "./controllers/GetUserID";
-import { GetAllTasks } from "./controllers/GetAllTasks";
+import { CreateUser } from "./controllers/controllerUsers/des/CreateUser";
+import { GetOneUser } from "./controllers/controllerUsers/des/GetOneUser";
+import { CreateTask } from "./controllers/controllerTasks/CreateTask";
+import { UpdateTask } from "./controllers/controllerTasks/UpdateTask";
+import { DeleteTask } from "./controllers/controllerTasks/DeleteTask";
+import { GetUserID } from "./controllers/controllerUsers/des/GetUserID";
+import { GetAllTasks } from "./controllers/controllerTasks/GetAllTasks";
+
+import { createUser , getOneUser } from "./controllers/controllerUsers/UserFactory";
+import { CreateUserService } from "./Model/servicesUser/CreateUserService";
+import { GetOneUserController } from "./controllers/controllerUsers/GetOneUserController";
 
 const routes = Router()
 
@@ -13,8 +17,16 @@ routes.get('/', (req, res) => {
     return res.json('start')
 })
 
+routes.post("/createUserA", (request, response) =>
+createUser().handle(request, response)
+);
 
-routes.post('/createUser', new CreateUser().user)
+routes.post("/getOneUser", (request, response) =>
+getOneUser().handle(request, response)
+);
+
+
+routes.post('/criarNovoUsuario', new CreateUser().user) 
 routes.post('/login', new GetOneUser().user)
 
 routes.get('/getUser/:id', new GetUserID().userId)
