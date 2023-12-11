@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { CreateUserService } from "../../Model/servicesUser/CreateUserService";
+import { CreateUserService } from "../../Model/serviceUser/CreateUserService";
 
 class CreateUserController {
   constructor(private createUser: CreateUserService) {}

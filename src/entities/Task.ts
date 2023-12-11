@@ -3,21 +3,22 @@ class Task {
   title: string;
   description: string;
   categories: string;
-  status: number;
+  statu?: boolean;
   authorId: string;
+  tasks?: []
 
-  private constructor({  title, description, categories, status, authorId }: Task) {
+  private constructor({  title, description, categories, statu, authorId }: Task) {
       this.title = title;
       this.description = description;
       this.categories = categories;
-      this.status = status;
+      this.statu = statu;
       this.authorId = authorId;
     };
   
 
-  static create({ title, description, categories, status, authorId }: Task) {
-    const user = new Task({ title, description, categories, status, authorId });
-    return user;
+  static create({ title, description, categories, statu, authorId }: Task) {
+    const task = new Task({ title, description, categories, statu, authorId });
+    return task;
   }
 }
 

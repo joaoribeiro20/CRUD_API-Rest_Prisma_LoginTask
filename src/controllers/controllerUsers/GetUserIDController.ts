@@ -1,13 +1,13 @@
 import { Request, Response } from "express";
-import { GetOneUserService } from "../../Model/serviceUser/GetOneUserService";
+import { GetUserIDService } from "../../Model/serviceUser/GetUserIDService";
 
-class GetOneUserController {
-  constructor(private getUser: GetOneUserService) {}
+class GetUserIDController {
+  constructor(private getUserID: GetUserIDService) {}
 
   async handle(request: Request, response: Response) {
     try {
-      const { email, password, id } = request.body;
-      const user = await this.getUser.execute({email, password , id});
+      const { id } = request.params;
+      const user = await this.getUserID.execute(id);
 
       return response.status(201).json(user);
     } catch (error) {
@@ -17,4 +17,4 @@ class GetOneUserController {
   }
 }
 
-export { GetOneUserController };
+export { GetUserIDController };
